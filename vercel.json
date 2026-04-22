@@ -1,1 +1,19 @@
-{}
+{
+  "version": 2,
+  "builds": [
+    { "src": "index.html", "use": "@vercel/static" },
+    { "src": "style.css", "use": "@vercel/static" },
+    { "src": "script.js", "use": "@vercel/static" },
+    { "src": "images/**", "use": "@vercel/static" },
+    { "src": "music/**", "use": "@vercel/static" },
+    { "src": "api/wishes.js", "use": "@vercel/node" }
+  ],
+  "routes": [
+    { "src": "/api/wishes", "dest": "/api/wishes.js" },
+    { "src": "/images/(.*)", "dest": "/images/$1" },
+    { "src": "/music/(.*)", "dest": "/music/$1" },
+    { "src": "/style.css", "dest": "/style.css" },
+    { "src": "/script.js", "dest": "/script.js" },
+    { "src": "/(.*)", "dest": "/index.html" }
+  ]
+}
