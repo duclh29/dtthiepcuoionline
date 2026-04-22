@@ -20,43 +20,38 @@ function saveWishes(wishes) {
 }
 
 module.exports = function handler(req, res) {
-  // CORS Headers
-  res.setHeader('Access-Control-Allow-Credentials', true);
+  // CORS
   res.setHeader('Access-Control-Allow-Origin', '*');
-  res.setHeader('Access-Control-Allow-Methods', 'GET,OPTIONS,PATCH,DELETE,POST,PUT');
-  res.setHeader(
-    'Access-Control-Allow-Headers',
-    'X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version'
-  );
+  res.setHeader('Access-Control-Allow-Methods', 'GET,POST,OPTIONS');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
 
   if (req.method === 'OPTIONS') {
-    res.status(200).end();
-    return;
+    return res.status(200).end();
   }
 
-  // Khởi tạo file tạm thời nếu chưa có
+  // Khởi tạo file nếu chưa có
   if (!fs.existsSync(DATA_FILE)) {
     saveWishes([]);
   }
 
   if (req.method === 'GET') {
     return res.status(200).json(readWishes());
-  } 
-  
+  }
+
   if (req.method === 'POST') {
     const { name, phone, attending, guestCount, message } = req.body || {};
-    
-    if (!name || !name.trim()) {
+
+    if (!name || !String(name).trim()) {
       return res.status(400).json({ error: 'Tên không được để trống.' });
     }
 
     const wish = {
       id: Date.now(),
-      name: name.trim(),
-      phone: (phone || '').trim(),
+      name: String(name).trim(),
+      phone: String(phone || '').trim(),
       attending: attending || 'yes',
       guestCount: parseInt(guestCount) || 1,
-      message: (message || '').trim(),
+      message: String(message || '').trim(),
       timestamp: new Date().toISOString()
     };
 
