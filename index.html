@@ -23,31 +23,33 @@
 
 <body>
 
-  <!-- ========== NAV ========== -->
-  <nav id="navbar" class="navbar">
-    <div class="nav-inner">
-      <a href="#hero" class="nav-logo">M & L</a>
-      <ul class="nav-links">
-        <li><a href="#couple">Cặp Đôi</a></li>
-        <li><a href="#story">Câu Chuyện</a></li>
-        <li><a href="#events">Sự Kiện</a></li>
-        <li><a href="#gallery">Gallery</a></li>
-        <li><a href="#gift">Mừng Cưới</a></li>
-        <li><a href="#rsvp" class="nav-cta">RSVP</a></li>
-      </ul>
-      <button class="hamburger" id="hamburger" aria-label="Menu">
-        <span></span><span></span><span></span>
-      </button>
+  <!-- ========== ENVELOPE OVERLAY ========== -->
+  <div id="envelopeOverlay" class="envelope-overlay">
+    <div class="env-wrapper" id="envWrapper">
+      <!-- Thư bên trong -->
+      <div class="env-letter">
+        <img src="images/DSC02540.JPG" alt="Wedding Photo" />
+      </div>
+      <!-- Nắp phong bì -->
+      <div class="env-flap"></div>
+      <!-- Mặt trước phong bì -->
+      <div class="env-front-bg"></div>
+      <!-- Nội dung chữ trên phong bì -->
+      <div class="env-content">
+        <div class="envelope-names script-font">Thu Trang & Huỳnh Đức</div>
+
+        <div class="envelope-details">
+          <div class="env-line-1">THỨ BẢY - 12:00</div>
+          <div class="env-line-2">02 . 05 . 2026</div>
+          <div class="env-line-3">Tức ngày 16 tháng 3 năm Bính Ngọ</div>
+          <div class="env-line-4">Tại gia đình nhà trai</div>
+        </div>
+
+        <div class="envelope-invite">Kính mời bạn</div>
+        <button id="openEnvelopeBtn" class="open-envelope-btn">Mở Thiệp</button>
+      </div>
     </div>
-    <div class="mobile-menu" id="mobileMenu">
-      <a href="#couple">Cặp Đôi</a>
-      <a href="#story">Câu Chuyện</a>
-      <a href="#events">Sự Kiện</a>
-      <a href="#gallery">Gallery</a>
-      <a href="#gift">Mừng Cưới</a>
-      <a href="#rsvp">RSVP</a>
-    </div>
-  </nav>
+  </div>
 
   <!-- ========== HERO ========== -->
   <section id="hero" class="hero">
@@ -71,13 +73,6 @@
         <span class="date-sep">·</span>
         <span class="date-item">2026</span>
       </div>
-      <p class="hero-location">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
-          <circle cx="12" cy="10" r="3" />
-        </svg>
-        Vũ Thắng 2, Kiến Xương, Hưng Yên
-      </p>
 
       <!-- Countdown -->
       <div class="countdown" id="countdown">
@@ -122,15 +117,15 @@
           </div>
           <div class="couple-info">
             <p class="couple-role">Cô Dâu</p>
-            <h3 class="couple-name">Đặng Thị Thu Trang</h3>
+            <h3 class="couple-name">Thu Trang</h3>
             <div class="couple-parents">
-              <span class="couple-parents-label">Con gái của</span>
+              <span class="couple-parents-label">Nhà gái:</span>
               <p class="couple-parents-names">Bà Ngô Thị Vân</p>
             </div>
             <div class="couple-divider"></div>
             <p class="couple-desc">
-              Một tâm hồn thơ mộng, yêu thiên nhiên và những buổi sáng tràn đầy nắng ấm.
-              Thu Trang tin rằng tình yêu là sức mạnh làm cho cuộc đời trở nên ý nghĩa hơn.
+              Cô dâu là một cô gái nhẹ nhàng, giản dị nhưng luôn ấm áp và chân thành
+              chỉ là đôi lúc hơi hay dỗi, hay nhõng nhẽo một chút.
             </p>
             <div class="couple-social">
               <a href="#" aria-label="Facebook">
@@ -168,15 +163,14 @@
           </div>
           <div class="couple-info">
             <p class="couple-role">Chú Rể</p>
-            <h3 class="couple-name">Lê Huỳnh Đức</h3>
+            <h3 class="couple-name">Huỳnh Đức</h3>
             <div class="couple-parents">
-              <span class="couple-parents-label">Con trai của</span>
+              <span class="couple-parents-label">Nhà trai:</span>
               <p class="couple-parents-names">Ông Lê Văn Đài &amp; Bà Ngô Thị Hà</p>
             </div>
             <div class="couple-divider"></div>
             <p class="couple-desc">
-              Chàng trai đam mê âm nhạc và những chuyến phiêu lưu. Huỳnh Đức luôn tin rằng
-              mỗi khoảnh khắc đều trở nên tuyệt vời hơn khi được chia sẻ với người thương.
+              Chú rể là một chàng trai điềm đạm, ít nói nhưng luôn ấm áp và vững vàng.
             </p>
             <div class="couple-social">
               <a href="#" aria-label="Facebook">
@@ -216,14 +210,20 @@
         <div class="timeline-item left reveal">
           <div class="timeline-content">
             <div class="timeline-img">
-              <img src="images/MIN_8126.jpg" alt="Lần đầu gặp gỡ" loading="lazy" />
+              <img src="images/DSC03185.JPG" alt="Lần đầu gặp gỡ" loading="lazy" />
             </div>
             <div class="timeline-body">
-              <span class="timeline-date">Tháng 3, 2019</span>
-              <h3 class="timeline-title">Lần Đầu Gặp Gỡ</h3>
+              <span class="timeline-date">Tháng 10, 2021</span>
+              <h3 class="timeline-title">Hành Trình Yêu Nhau</h3>
               <p class="timeline-desc">
-                Một buổi chiều mưa nhẹ tại quán cà phê nhỏ, Khoa và Thu Trang tình cờ ngồi cạnh nhau.
-                Một cuộc trò chuyện ngắn về sách, về nhạc — và trái tim của cả hai đã bắt đầu rung động.
+                Chúng mình quen nhau từ những ngày còn học chung cấp 2,
+                khi ấy chỉ là bạn bè, là những buổi học và vài câu chuyện vu vơ của tuổi học trò.
+                Rồi lên đại học, giữa những thay đổi của cuộc sống mới,
+                chúng mình lại tìm thấy nhau theo một cách khác… và bắt đầu yêu.
+                Cùng nhau trưởng thành, cùng đi qua nhiều chuyện, để rồi nhận ra:
+                người mình muốn ở cạnh nhất… vẫn là người bạn năm nào.
+                Và hôm nay, chúng mình chọn viết tiếp câu chuyện ấy bằng một lời hứa – chung đường, chung nhà, chung
+                tương lai.
               </p>
             </div>
           </div>
@@ -235,55 +235,13 @@
           </div>
         </div>
 
-        <!-- Item 2 -->
-        <div class="timeline-item right reveal">
-          <div class="timeline-content">
-            <div class="timeline-img">
-              <img src="images/story2.png" alt="Chuyến du lịch đầu tiên" loading="lazy" />
-            </div>
-            <div class="timeline-body">
-              <span class="timeline-date">Tháng 7, 2020</span>
-              <h3 class="timeline-title">Chuyến Phiêu Lưu Đầu Tiên</h3>
-              <p class="timeline-desc">
-                Cùng nhau khám phá bờ biển Đà Nẵng trong chuyến du lịch đáng nhớ. Những bước chân
-                trên cát, hoàng hôn rực rỡ và những nụ cười — tất cả đã trở thành kỷ niệm không thể quên.
-              </p>
-            </div>
-          </div>
-          <div class="timeline-dot">
-            <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16">
-              <path
-                d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
-            </svg>
-          </div>
-        </div>
-
-        <!-- Item 3 -->
-        <div class="timeline-item left reveal">
-          <div class="timeline-content">
-            <div class="timeline-img">
-              <img src="images/story3.png" alt="Lời cầu hôn" loading="lazy" />
-            </div>
-            <div class="timeline-body">
-              <span class="timeline-date">Tháng 12, 2025</span>
-              <h3 class="timeline-title">Lời Cầu Hôn Ngọt Ngào</h3>
-              <p class="timeline-desc">
-                Dưới ánh nến lung linh và hàng nghìn cánh hoa hồng, Khoa đã quỳ xuống và trao nhẫn
-                cho Thu Trang. Một từ "Có" đã mở ra hành trình mới tuyệt vời nhất của cuộc đời họ.
-              </p>
-            </div>
-          </div>
-          <div class="timeline-dot">
-            <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16">
-              <path
-                d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
-            </svg>
-          </div>
-        </div>
 
         <!-- Item 4 (future) -->
         <div class="timeline-item right reveal">
           <div class="timeline-content timeline-future">
+            <div class="timeline-img">
+              <img src="images/DSC03292.JPG" alt="Lời cầu hôn" loading="lazy" />
+            </div>
             <div class="timeline-body">
               <span class="timeline-date">02 · 05 · 2026</span>
               <h3 class="timeline-title">Và Câu Chuyện Tiếp Tục…</h3>
@@ -424,6 +382,66 @@
             Xem Bản Đồ
           </a>
         </div>
+
+
+      </div>
+      <!-- Lễ Thành Hôn -->
+      <div class="event-card event-card-standalone reveal">
+        <div class="event-icon">
+          <svg viewBox="0 0 64 64" width="48" height="48" fill="none">
+            <circle cx="32" cy="32" r="30" stroke="currentColor" stroke-width="1.5" opacity="0.3" />
+            <path d="M32 16C23.2 16 16 23.2 16 32s7.2 16 16 16 16-7.2 16-16S40.8 16 32 16z" fill="currentColor"
+              opacity="0.1" />
+            <path d="M20 32c0-6.6 5.4-12 12-12s12 5.4 12 12-5.4 12-12 12-12-5.4-12-12z" stroke="currentColor"
+              stroke-width="1.5" />
+            <path d="M32 20v12l6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+          </svg>
+        </div>
+        <div class="event-tag">Nghi Lễ</div>
+        <h3 class="event-name">Lễ Thành Hôn</h3>
+        <div class="event-details">
+          <div class="event-detail-row">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="10" />
+              <polyline points="12 6 12 12 16 14" />
+            </svg>
+            <span>THỨ BẢY - 12H00</span>
+          </div>
+          <div class="event-detail-row">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
+              <line x1="16" y1="2" x2="16" y2="6" />
+              <line x1="8" y1="2" x2="8" y2="6" />
+              <line x1="3" y1="10" x2="21" y2="10" />
+            </svg>
+            <span>Ngày 02 tháng 05 năm Bính Ngọ</span>
+          </div>
+          <div class="event-detail-row">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" />
+            </svg>
+            <span>Tức ngày 16 tháng 3 (Âm Lịch)</span>
+          </div>
+          <div class="event-detail-row">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
+              <circle cx="12" cy="10" r="3" />
+            </svg>
+            <span>Tại gia đình nhà trai</span>
+          </div>
+        </div>
+        <p class="event-desc">
+          Nghi lễ rước dâu và lễ gia tiên tại nhà trai, đánh dấu thời khắc thiêng liêng hai người chính thức nên vợ
+          thành chồng.
+        </p>
+        <a href="https://www.google.com/maps/place/B%C3%A0+Khuy%C3%AAn.+R%C6%B0%E1%BB%A3u,+g%C3%A0,+ngan./@20.3789958,106.3649313,19.54z/data=!4m9!1m2!2m1!1zVGjDtG4gMiB2xakgdGjhuq9uZyBraeG6v24geMawxqFuZw!3m5!1s0x3135fd22ea8ccb17:0xd385b24cb3ee41a6!8m2!3d20.3789844!4d106.3652987!16s%2Fg%2F11k7t4fc2k?entry=ttu&g_ep=EgoyMDI2MDQxOS4wIKXMDSoASAFQAw%3D%3D"
+          target="_blank" class="btn btn-outline-primary event-map-btn">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
+            <circle cx="12" cy="10" r="3" />
+          </svg>
+          Xem Bản Đồ
+        </a>
       </div>
     </div>
   </section>
@@ -443,7 +461,7 @@
 
       <div class="gallery-grid" id="galleryGrid">
         <div class="gallery-item reveal" data-index="0">
-          <img src="images/DSC02201.JPG" alt="Ảnh cưới 1" loading="lazy" />
+          <img src="images/DSC03153.JPG" alt="Ảnh cưới 1" loading="lazy" />
           <div class="gallery-overlay"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
               width="28" height="28">
               <circle cx="11" cy="11" r="8" />
@@ -453,7 +471,7 @@
             </svg></div>
         </div>
         <div class="gallery-item reveal" data-index="1">
-          <img src="images/DSC02265.JPG" alt="Ảnh cưới 2" loading="lazy" />
+          <img src="images/DSC02576.JPG" alt="Ảnh cưới 2" loading="lazy" />
           <div class="gallery-overlay"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
               width="28" height="28">
               <circle cx="11" cy="11" r="8" />
@@ -463,7 +481,7 @@
             </svg></div>
         </div>
         <div class="gallery-item reveal" data-index="2">
-          <img src="images/DSC02370.JPG" alt="Ảnh cưới 3" loading="lazy" />
+          <img src="images/DSC03193.JPG" alt="Ảnh cưới 3" loading="lazy" />
           <div class="gallery-overlay"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
               width="28" height="28">
               <circle cx="11" cy="11" r="8" />
@@ -472,10 +490,8 @@
               <line x1="8" y1="11" x2="14" y2="11" />
             </svg></div>
         </div>
-
-
         <div class="gallery-item reveal" data-index="3">
-          <img src="images/DSC02384.JPG" alt="Ảnh cưới 4" loading="lazy" />
+          <img src="images/DSC02553.JPG" alt="Ảnh cưới 4" loading="lazy" />
           <div class="gallery-overlay"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
               width="28" height="28">
               <circle cx="11" cy="11" r="8" />
@@ -485,7 +501,7 @@
             </svg></div>
         </div>
         <div class="gallery-item reveal" data-index="4">
-          <img src="images/DSC02496.JPG" alt="Ảnh cưới 5" loading="lazy" />
+          <img src="images/DSC02879.JPG" alt="Ảnh cưới 5" loading="lazy" />
           <div class="gallery-overlay"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
               width="28" height="28">
               <circle cx="11" cy="11" r="8" />
@@ -495,7 +511,7 @@
             </svg></div>
         </div>
         <div class="gallery-item reveal" data-index="5">
-          <img src="images/DSC02201.JPG" alt="Ảnh cưới 6" loading="lazy" />
+          <img src="images/DSC02665.JPG" alt="Ảnh cưới 6" loading="lazy" />
           <div class="gallery-overlay"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
               width="28" height="28">
               <circle cx="11" cy="11" r="8" />
@@ -505,7 +521,27 @@
             </svg></div>
         </div>
         <div class="gallery-item reveal" data-index="6">
-          <img src="images/DSC02576.JPG" alt="Ảnh cưới 6" loading="lazy" />
+          <img src="images/DSC03308.JPG" alt="Ảnh cưới 7" loading="lazy" />
+          <div class="gallery-overlay"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              width="28" height="28">
+              <circle cx="11" cy="11" r="8" />
+              <line x1="21" y1="21" x2="16.65" y2="16.65" />
+              <line x1="11" y1="8" x2="11" y2="14" />
+              <line x1="8" y1="11" x2="14" y2="11" />
+            </svg></div>
+        </div>
+        <div class="gallery-item reveal" data-index="7">
+          <img src="images/DSC02496.JPG" alt="Ảnh cưới 8" loading="lazy" />
+          <div class="gallery-overlay"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              width="28" height="28">
+              <circle cx="11" cy="11" r="8" />
+              <line x1="21" y1="21" x2="16.65" y2="16.65" />
+              <line x1="11" y1="8" x2="11" y2="14" />
+              <line x1="8" y1="11" x2="14" y2="11" />
+            </svg></div>
+        </div>
+        <div class="gallery-item reveal" data-index="8">
+          <img src="images/DSC03244.JPG" alt="Ảnh cưới 9" loading="lazy" />
           <div class="gallery-overlay"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
               width="28" height="28">
               <circle cx="11" cy="11" r="8" />
@@ -516,14 +552,14 @@
         </div>
       </div>
 
-      <!-- Video Section -->
+      <!-- Video Section
       <div class="gallery-video-wrapper reveal" style="margin-top: 60px; max-width: 1000px; margin-inline: auto;">
         <video controls preload="metadata"
           style="width: 100%; aspect-ratio: 21/9; border-radius: 16px; box-shadow: 0 8px 40px rgba(0,0,0,0.12); background: #000; object-fit: cover; outline: none;">
           <source src="images/video_cuoi.mp4" type="video/mp4">
           Trình duyệt của bạn không hỗ trợ thẻ video.
         </video>
-      </div>
+      </div> -->
     </div>
 
     <!-- Lightbox -->
@@ -547,7 +583,7 @@
           <polyline points="9 18 15 12 9 6" />
         </svg>
       </button>
-      <div class="lightbox-counter" id="lightboxCounter">1 / 6</div>
+      <div class="lightbox-counter" id="lightboxCounter">1 / 9</div>
     </div>
   </section>
 
@@ -824,7 +860,7 @@
 
   <!-- Background Music -->
   <audio id="bgMusic" loop preload="auto">
-    <source src="music/I Do.mp3" type="audio/mpeg" />
+    <source src="music/Lễ Đường.mp3" type="audio/mpeg" />
   </audio>
 
   <!-- Music Toggle -->

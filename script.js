@@ -23,32 +23,63 @@
   }
 })();
 
-/* ---- NAVBAR SCROLL ---- */
-const navbar = document.getElementById('navbar');
-window.addEventListener('scroll', () => {
-  navbar.classList.toggle('scrolled', window.scrollY > 60);
-}, { passive: true });
+/* ---- ENVELOPE LOGIC ---- */
+const envelopeOverlay = document.getElementById('envelopeOverlay');
+const openEnvelopeBtn = document.getElementById('openEnvelopeBtn');
 
-/* ---- HAMBURGER MENU ---- */
-const hamburger = document.getElementById('hamburger');
-const mobileMenu = document.getElementById('mobileMenu');
+if (envelopeOverlay && openEnvelopeBtn) {
+  // Prevent scrolling while envelope is active
+  document.body.style.overflow = 'hidden';
 
-hamburger.addEventListener('click', () => {
-  mobileMenu.classList.toggle('open');
-  const spans = hamburger.querySelectorAll('span');
-  const isOpen = mobileMenu.classList.contains('open');
-  spans[0].style.transform = isOpen ? 'rotate(45deg) translate(5px, 5px)' : '';
-  spans[1].style.opacity = isOpen ? '0' : '';
-  spans[2].style.transform = isOpen ? 'rotate(-45deg) translate(5px, -5px)' : '';
-});
+  openEnvelopeBtn.addEventListener('click', () => {
+    envelopeOverlay.classList.add('opened');
+    setTimeout(() => {
+      envelopeOverlay.style.display = 'none';
+      document.body.style.overflow = '';
+      
+      // Trigger music play here if not already playing
+      if (typeof bgMusic !== 'undefined' && bgMusic.paused) {
+        bgMusic.play().then(() => {
+          if (typeof isPlaying !== 'undefined') isPlaying = true;
+          const toggle = document.getElementById('musicToggle');
+          if (toggle) {
+            toggle.classList.add('playing');
+            toggle.title = 'Tắt nhạc nền';
+            const mOn = toggle.querySelector('.music-on');
+            const mOff = toggle.querySelector('.music-off');
+            if (mOn) mOn.style.display = 'block';
+            if (mOff) mOff.style.display = 'none';
+          }
+        }).catch(err => console.log(err));
+      }
 
-mobileMenu.querySelectorAll('a').forEach(a => {
-  a.addEventListener('click', () => {
-    mobileMenu.classList.remove('open');
-    const spans = hamburger.querySelectorAll('span');
-    spans.forEach(s => { s.style.transform = ''; s.style.opacity = ''; });
+      // Auto-scroll functionality
+      setTimeout(() => {
+        let isAutoScrolling = true;
+
+        const stopAutoScroll = () => { isAutoScrolling = false; };
+        // Stop scrolling when user interacts
+        window.addEventListener('wheel', stopAutoScroll, { passive: true });
+        window.addEventListener('touchstart', stopAutoScroll, { passive: true });
+        window.addEventListener('mousedown', stopAutoScroll, { passive: true });
+        window.addEventListener('keydown', stopAutoScroll, { passive: true });
+
+        const step = () => {
+          if (!isAutoScrolling) return;
+          // Stop if reached the bottom
+          if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight - 2) {
+            isAutoScrolling = false;
+            return;
+          }
+          window.scrollBy(0, 1.5); // Adjust speed here (1.5px per frame is a smooth, readable speed)
+          requestAnimationFrame(step);
+        };
+        requestAnimationFrame(step);
+      }, 1000); // Delay 1s after envelope fades to start scrolling
+
+    }, 2500); // match new CSS 3D envelope animation duration
   });
-});
+}
 
 /* ---- COUNTDOWN ---- */
 const weddingDate = new Date('2026-05-02T18:00:00+07:00');
@@ -456,6 +487,35 @@ musicToggle.addEventListener('click', () => {
     });
   }
 });
+
+// Tự động phát nhạc khi có tương tác đầu tiên
+function initAutoPlay() {
+  const tryPlayMusic = () => {
+    if (!isPlaying) {
+      bgMusic.play().then(() => {
+        isPlaying = true;
+        musicToggle.classList.add('playing');
+        musicToggle.title = 'Tắt nhạc nền';
+        musicOnIcon.style.display = 'block';
+        musicOffIcon.style.display = 'none';
+        
+        document.removeEventListener('click', tryPlayMusic);
+        document.removeEventListener('scroll', tryPlayMusic);
+        document.removeEventListener('touchstart', tryPlayMusic);
+      }).catch(err => {
+        // Trình duyệt chặn, đợi event
+      });
+    }
+  };
+
+  tryPlayMusic();
+
+  document.addEventListener('click', tryPlayMusic, { once: true });
+  document.addEventListener('scroll', tryPlayMusic, { once: true, passive: true });
+  document.addEventListener('touchstart', tryPlayMusic, { once: true, passive: true });
+}
+
+window.addEventListener('DOMContentLoaded', initAutoPlay);
 
 /* ---- SMOOTH SCROLL FOR NAV LINKS ---- */
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
