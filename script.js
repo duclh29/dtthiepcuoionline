@@ -5,19 +5,19 @@
 /* ---- PETALS ---- */
 (function createPetals() {
   const container = document.getElementById('petals');
-  const colors = ['#f2c4ce', '#f9dde5', '#fce8dc', '#f7e3f0', '#e8d5f0', '#d5e8f0', '#ffffff'];
-  for (let i = 0; i < 45; i++) {
+  const colors = ['#f2c4ce', '#f9dde5', '#fce8dc', '#f7e3f0', '#e8d5f0', '#d5e8f0'];
+  for (let i = 0; i < 22; i++) {
     const p = document.createElement('div');
     p.className = 'petal';
-    const size = Math.random() * 12 + 8;
+    const size = Math.random() * 10 + 6;
     p.style.cssText = `
       left: ${Math.random() * 100}%;
-      top: ${Math.random() * -20}%;
+      top: ${Math.random() * 100}%;
       width: ${size}px;
       height: ${size}px;
       background: ${colors[Math.floor(Math.random() * colors.length)]};
-      animation-duration: ${Math.random() * 15 + 10}s;
-      animation-delay: ${Math.random() * -25}s;
+      animation-duration: ${Math.random() * 12 + 10}s;
+      animation-delay: ${Math.random() * -20}s;
     `;
     container.appendChild(p);
   }
@@ -504,5 +504,5 @@ document.querySelectorAll('.timeline-item').forEach((item, i) => {
 });
 
 /* ---- INIT ---- */
-console.log('💍 Chung Doi Wedding Template — Ready');
+console.log('Wedding Template — Ready');
 
