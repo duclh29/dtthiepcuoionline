@@ -4,16 +4,16 @@ const fs = require('fs');
 const path = require('path');
 
 const app = express();
-const PORT = 3456;
-const DATA_FILE = path.join(__dirname, 'data', 'wishes.json');
+const PORT = process.env.PORT || 3456;
+const DATA_FILE = process.env.VERCEL ? '/tmp/wishes.json' : path.join(__dirname, 'data', 'wishes.json');
 
 // Middleware
 app.use(cors());
 app.use(express.json());
 app.use(express.static(__dirname));
 
-// Ensure data directory exists
-if (!fs.existsSync(path.join(__dirname, 'data'))) {
+// Ensure data directory exists if not on Vercel
+if (!process.env.VERCEL && !fs.existsSync(path.join(__dirname, 'data'))) {
   fs.mkdirSync(path.join(__dirname, 'data'));
 }
 
@@ -71,3 +71,5 @@ app.post('/api/wishes', (req, res) => {
 app.listen(PORT, () => {
   console.log(`💍 Wedding server running at http://localhost:${PORT}`);
 });
+
+module.exports = app;
