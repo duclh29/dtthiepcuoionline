@@ -10,7 +10,9 @@ const DATA_FILE = process.env.VERCEL ? '/tmp/wishes.json' : path.join(__dirname,
 // Middleware
 app.use(cors());
 app.use(express.json());
-app.use(express.static(__dirname));
+
+// Serve static files (index.html, style.css, script.js, images, music)
+app.use(express.static(path.join(__dirname)));
 
 // Ensure data directory exists if not on Vercel
 if (!process.env.VERCEL && !fs.existsSync(path.join(__dirname, 'data'))) {
@@ -19,7 +21,7 @@ if (!process.env.VERCEL && !fs.existsSync(path.join(__dirname, 'data'))) {
 
 // Initialize wishes file if not exists
 if (!fs.existsSync(DATA_FILE)) {
-  fs.writeFileSync(DATA_FILE, '[]', 'utf-8');
+  try { fs.writeFileSync(DATA_FILE, '[]', 'utf-8'); } catch {}
 }
 
 // Helper: read wishes
@@ -34,7 +36,11 @@ function readWishes() {
 
 // Helper: save wishes
 function saveWishes(wishes) {
-  fs.writeFileSync(DATA_FILE, JSON.stringify(wishes, null, 2), 'utf-8');
+  try {
+    fs.writeFileSync(DATA_FILE, JSON.stringify(wishes, null, 2), 'utf-8');
+  } catch (err) {
+    console.error('Save error:', err);
+  }
 }
 
 // GET /api/wishes — return all wishes
@@ -45,7 +51,7 @@ app.get('/api/wishes', (req, res) => {
 
 // POST /api/wishes — add a new wish
 app.post('/api/wishes', (req, res) => {
-  const { name, phone, attending, guestCount, message } = req.body;
+  const { name, phone, attending, guestCount, message } = req.body || {};
 
   if (!name || !name.trim()) {
     return res.status(400).json({ error: 'Tên không được để trống.' });
@@ -62,14 +68,21 @@ app.post('/api/wishes', (req, res) => {
   };
 
   const wishes = readWishes();
-  wishes.unshift(wish); // newest first
+  wishes.unshift(wish);
   saveWishes(wishes);
 
   res.status(201).json(wish);
 });
 
-app.listen(PORT, () => {
-  console.log(`💍 Wedding server running at http://localhost:${PORT}`);
+// Fallback: serve index.html for any other route
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'index.html'));
 });
+
+if (!process.env.VERCEL) {
+  app.listen(PORT, () => {
+    console.log(`💍 Wedding server running at http://localhost:${PORT}`);
+  });
+}
 
 module.exports = app;
