@@ -71,7 +71,7 @@ if (envelopeOverlay && openEnvelopeBtn) {
             isAutoScrolling = false;
             return;
           }
-          window.scrollBy(0, 3); // Tốc độ chạy tự động (tăng lên 3 để nhanh hơn)
+          window.scrollBy({ top: 3, left: 0, behavior: 'auto' }); // behavior: auto để không bị xung đột với smooth scroll trên điện thoại
           requestAnimationFrame(step);
         };
         requestAnimationFrame(step);
