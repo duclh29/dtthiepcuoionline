@@ -60,7 +60,7 @@ if (envelopeOverlay && openEnvelopeBtn) {
         const stopAutoScroll = () => { isAutoScrolling = false; };
         // Stop scrolling when user interacts
         window.addEventListener('wheel', stopAutoScroll, { passive: true });
-        window.addEventListener('touchstart', stopAutoScroll, { passive: true });
+        window.addEventListener('touchmove', stopAutoScroll, { passive: true });
         window.addEventListener('mousedown', stopAutoScroll, { passive: true });
         window.addEventListener('keydown', stopAutoScroll, { passive: true });
 
@@ -71,7 +71,7 @@ if (envelopeOverlay && openEnvelopeBtn) {
             isAutoScrolling = false;
             return;
           }
-          window.scrollBy(0, 1.5); // Adjust speed here (1.5px per frame is a smooth, readable speed)
+          window.scrollBy(0, 3); // Tốc độ chạy tự động (tăng lên 3 để nhanh hơn)
           requestAnimationFrame(step);
         };
         requestAnimationFrame(step);
